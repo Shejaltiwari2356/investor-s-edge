@@ -45,11 +45,11 @@ const features = [
   },
 ];
 
-const stats = [
-  { label: "Companies Analyzed", value: "12,847", trend: { value: 23, isPositive: true } },
-  { label: "Pitches Reviewed", value: "3,291", trend: { value: 15, isPositive: true } },
-  { label: "Facts Verified", value: "89,432", trend: { value: 31, isPositive: true } },
-  { label: "Accuracy Rate", value: "97.3%", trend: { value: 2.1, isPositive: true } },
+const capabilities = [
+  { icon: Shield, label: "Secure Analysis", description: "Enterprise-grade data protection" },
+  { icon: Zap, label: "Real-time Processing", description: "Instant AI-powered insights" },
+  { icon: BarChart3, label: "Deep Analytics", description: "Comprehensive market intelligence" },
+  { icon: Building2, label: "Multi-Source Data", description: "Aggregated from trusted sources" },
 ];
 
 export default function Index() {
@@ -91,17 +91,26 @@ export default function Index() {
           </div>
         </motion.div>
 
-        {/* Stats Grid */}
+        {/* Capabilities Grid */}
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {stats.map((stat, index) => (
-            <DataCard
-              key={stat.label}
-              title={stat.label}
-              value={stat.value}
-              trend={stat.trend}
-              delay={index * 0.1}
-            />
-          ))}
+          {capabilities.map((item, index) => {
+            const Icon = item.icon;
+            return (
+              <motion.div
+                key={item.label}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 }}
+                className="glass-panel rounded-xl p-5 text-center"
+              >
+                <div className="flex h-12 w-12 mx-auto items-center justify-center rounded-xl bg-primary/10 text-primary mb-3">
+                  <Icon className="h-6 w-6" />
+                </div>
+                <h4 className="font-semibold text-foreground mb-1">{item.label}</h4>
+                <p className="text-xs text-muted-foreground">{item.description}</p>
+              </motion.div>
+            );
+          })}
         </div>
 
         {/* Features Grid */}
